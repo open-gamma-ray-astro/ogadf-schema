@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "ogadf_schema"
+version = "0.2.0"
+description = ""
+authors = ["Maximilian Nöthe <maximilian.noethe@tu-dortmund.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+fits-schema = "^0.2.0"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^3.7.9"
+pytest-cov = "^2.8"
+ipython = "^7.13.0"
+
+[tool.poetry.extras]
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
