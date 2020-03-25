@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-fits-schema = "^0.2.0"
+fits-schema = "^0.3.0"
 
 
 [tool.poetry.dev-dependencies]

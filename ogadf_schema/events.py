@@ -48,7 +48,7 @@ class EVENTS(BinaryTable):
         HDUCLAS1 = HeaderCard(allowed_values='EVENTS')
         OBS_ID   = HeaderCard(type_=int)
         TSTART   = HeaderCard(type_=float)
-        TEND     = HeaderCard(type_=float)
+        TSTOP    = HeaderCard(type_=float)
         ONTIME   = HeaderCard(type_=float)
         LIVETIME = HeaderCard(type_=float)
         DEADC    = HeaderCard(type_=float)
