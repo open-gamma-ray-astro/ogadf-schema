@@ -44,7 +44,7 @@ class EVENTS(BinaryTable):
         # Mandatory
         HDUCLASS = HeaderCard(allowed_values='GADF')
         HDUDOC   = HeaderCard(allowed_values='https://gamma-astro-data-formats.readthedocs.io')
-        HDUVERS  = HeaderCard(allowed_values='v0.2')
+        HDUVERS  = HeaderCard(allowed_values=['v0.2', '0.2'])
         HDUCLAS1 = HeaderCard(allowed_values='EVENTS')
         OBS_ID   = HeaderCard(type_=int)
         TSTART   = HeaderCard(type_=float)
