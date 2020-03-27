@@ -1,6 +1,13 @@
 from fits_schema.header import HeaderSchema, HeaderCard
 
 
+class HDUClass(HeaderSchema):
+    '''Minimum HDU* headers for this standard'''
+    HDUCLASS = HeaderCard(allowed_values='GADF')
+    HDUDOC   = HeaderCard(allowed_values='https://gamma-astro-data-formats.readthedocs.io')
+    HDUVERS  = HeaderCard(allowed_values=['v0.2', '0.2'])
+
+
 class EarthLocation(HeaderSchema):
     '''
     Header cards for the observatory location,

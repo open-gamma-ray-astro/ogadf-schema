@@ -2,7 +2,7 @@ from fits_schema.binary_table import BinaryTable, Int64, Double, Int16
 from fits_schema.header import HeaderCard
 import astropy.units as u
 
-from .common_headers import EarthLocation, TimeDefinition, Object
+from .common_headers import EarthLocation, TimeDefinition, Object, HDUClass
 
 
 class EVENTS(BinaryTable):
@@ -42,11 +42,8 @@ class EVENTS(BinaryTable):
     HIL_MSL     = Double(required=False)
     HIL_MSL_ERR = Double(required=False)
 
-    class __header__(TimeDefinition, EarthLocation, Object):
+    class __header__(HDUClass, TimeDefinition, EarthLocation, Object):
         # Mandatory
-        HDUCLASS = HeaderCard(allowed_values='GADF')
-        HDUDOC   = HeaderCard(allowed_values='https://gamma-astro-data-formats.readthedocs.io')
-        HDUVERS  = HeaderCard(allowed_values=['v0.2', '0.2'])
         HDUCLAS1 = HeaderCard(allowed_values='EVENTS')
         OBS_ID   = HeaderCard(type_=int)
         TSTART   = HeaderCard(type_=float)
@@ -68,3 +65,28 @@ class EVENTS(BinaryTable):
         TELLIST  = HeaderCard(type_=str, required=False)
         N_TELS   = HeaderCard(type_=int, required=False)
         TASSIGN  = HeaderCard(type_=str, required=False)
+
+
+class GTI(BinaryTable):
+    '''
+    The ``GTI`` extension is a binary FITS table that contains the Good Time
+    Intervals ('GTIs') for the event list.
+    A general description of GTIs can be found in the `OGIP GTI`_ standard.
+
+    This HDU contains two mandatory columns named ``START`` and ``STOP``.
+    At least one row is containing the start and end time of the observation must
+    be present.
+    The values are in units of seconds with respect to the reference
+    time defined in the header (keywords MJDREFI and MJDREFF).
+    This extension allows for a detailed handling of good time intervals
+    (i.e. excluding periods with cloud cover or lightning during one observation).
+
+    High-level Science tools could modify the GTIs according to user parameter.
+    See e.g. `gtmktime`_ for an application example from the Fermi Science Tools.
+    '''
+    # Mandatory
+    START = Double(unit=u.s)
+    STOP  = Double(unit=u.s)
+
+    class __header__(HDUClass, TimeDefinition, EarthLocation):
+        HDUCLAS1 = HeaderCard(allowed_values='GTI')
