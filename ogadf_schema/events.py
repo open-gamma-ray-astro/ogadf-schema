@@ -1,6 +1,8 @@
 from fits_schema.binary_table import BinaryTable, Int64, Double, Int16
-from fits_schema.header import HeaderSchema, HeaderCard
+from fits_schema.header import HeaderCard
 import astropy.units as u
+
+from .common_headers import EarthLocation, TimeDefinition, Object
 
 
 class EVENTS(BinaryTable):
@@ -14,10 +16,10 @@ class EVENTS(BinaryTable):
     '''
     # Mandatory
     EVENT_ID = Int64()
-    TIME = Double(unit=u.s)
-    RA = Double(unit=u.deg)
-    DEC = Double(unit=u.deg)
-    ENERGY = Double(unit=u.TeV)
+    TIME     = Double(unit=u.s)
+    RA       = Double(unit=u.deg)
+    DEC      = Double(unit=u.deg)
+    ENERGY   = Double(unit=u.TeV)
 
     # Optional
     MULTIP      = Int16(required=False)
@@ -40,7 +42,7 @@ class EVENTS(BinaryTable):
     HIL_MSL     = Double(required=False)
     HIL_MSL_ERR = Double(required=False)
 
-    class __header__(HeaderSchema):
+    class __header__(TimeDefinition, EarthLocation, Object):
         # Mandatory
         HDUCLASS = HeaderCard(allowed_values='GADF')
         HDUDOC   = HeaderCard(allowed_values='https://gamma-astro-data-formats.readthedocs.io')
@@ -63,6 +65,6 @@ class EVENTS(BinaryTable):
 
         # Optional
         HDUCLAS1 = HeaderCard(type_=str, required=False)
-        TELLIST = HeaderCard(type_=str, required=False)
-        N_TELS = HeaderCard(type_=int, required=False)
-        TASSIGN = HeaderCard(type_=str, required=False)
+        TELLIST  = HeaderCard(type_=str, required=False)
+        N_TELS   = HeaderCard(type_=int, required=False)
+        TASSIGN  = HeaderCard(type_=str, required=False)
