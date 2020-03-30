@@ -2,7 +2,9 @@ from fits_schema.binary_table import BinaryTable, Int64, Double, Int16
 from fits_schema.header import HeaderCard
 import astropy.units as u
 
-from .common_headers import EarthLocation, TimeDefinition, Object, HDUClass
+from .common_headers import (
+    EarthLocation, TimeDefinition, Object, HDUClass, CoordinateSystem
+)
 
 
 class EVENTS(BinaryTable):
@@ -42,7 +44,7 @@ class EVENTS(BinaryTable):
     HIL_MSL     = Double(required=False)
     HIL_MSL_ERR = Double(required=False)
 
-    class __header__(HDUClass, TimeDefinition, EarthLocation, Object):
+    class __header__(HDUClass, TimeDefinition, EarthLocation, Object, CoordinateSystem):
         # Mandatory
         HDUCLAS1 = HeaderCard(allowed_values='EVENTS')
         OBS_ID   = HeaderCard(type_=int)
@@ -53,8 +55,6 @@ class EVENTS(BinaryTable):
         DEADC    = HeaderCard(type_=float)
         RA_PNT   = HeaderCard(type_=float)
         DEC_PNT  = HeaderCard(type_=float)
-        EQUINOX  = HeaderCard(type_=float, allowed_values=2000.0)
-        RADECSYS = HeaderCard(type_=str, allowed_values='ICRS')
         ORIGIN   = HeaderCard(type_=str)
         TELESCOP = HeaderCard(type_=str)
         INSTRUME = HeaderCard(type_=str)

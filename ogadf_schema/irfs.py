@@ -1,0 +1,112 @@
+import astropy.units as u
+from fits_schema.binary_table import BinaryTable, Double
+from fits_schema.header import HeaderCard
+from .common_headers import HDUClass
+
+
+class AEFF_2D(BinaryTable):
+    '''
+    Radially effective area table in
+    bins of true energy and field of view offset
+    '''
+    ENERG_LO = Double(ndim=1, unit=u.TeV)
+    ENERG_HI = Double(ndim=1, unit=u.TeV)
+    THETA_LO = Double(ndim=1, unit=u.deg)
+    THETA_HI = Double(ndim=1, unit=u.deg)
+    EFFAREA  = Double(ndim=2, unit=u.m**2)
+
+    class __header__(HDUClass):
+        HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
+        HDUCLAS2 = HeaderCard(allowed_values='EFF_AREA')
+        HDUCLAS3 = HeaderCard(allowed_values={'FULL_ENCLOSURE', 'POINT-LIKE'})
+        HDUCLAS4 = HeaderCard(allowed_values='AEFF_2D')
+        RAD_MAX  = HeaderCard(type_=float, required=False)
+        OBS_ID   = HeaderCard(type_=int, required=False)
+        LO_THRES = HeaderCard(type_=float, required=False)
+        HI_THRES = HeaderCard(type_=float, required=False)
+
+
+class EDISP_2D(BinaryTable):
+    '''
+    Energy dispersion as relative energy migration in bins of
+    true energy and field of view offset
+    '''
+    ENERG_LO = Double(ndim=1, unit=u.TeV)
+    ENERG_HI = Double(ndim=1, unit=u.TeV)
+    MIGRA_LO = Double(ndim=1, unit=u.dimensionless_unscaled)
+    MIGRA_HI = Double(ndim=1, unit=u.dimensionless_unscaled)
+    THETA_LO = Double(ndim=1, unit=u.deg)
+    THETA_HI = Double(ndim=1, unit=u.deg)
+    MATRIX   = Double(ndim=3, unit=u.dimensionless_unscaled)
+
+    class __header__(HDUClass):
+        HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
+        HDUCLAS2 = HeaderCard(allowed_values='EDISP')
+        HDUCLAS3 = HeaderCard(allowed_values={'FULL-ENCLOSURE', 'POINT-LIKE'})
+        HDUCLAS4 = HeaderCard(allowed_values='EDISP_2D')
+        RAD_MAX = HeaderCard(type_=float, required=False)
+        OBS_ID   = HeaderCard(type_=int, required=False)
+        LO_THRES = HeaderCard(type_=float, required=False)
+        HI_THRES = HeaderCard(type_=float, required=False)
+
+
+class RAD_MAX(BinaryTable):
+    '''
+    Table with radius of the selection are for point-like irfs in bins
+    of true energy and field of view offset.
+    '''
+    ENERG_LO = Double(ndim=1, unit=u.TeV)
+    ENERG_HI = Double(ndim=1, unit=u.TeV)
+    THETA_LO = Double(ndim=1, unit=u.deg)
+    THETA_HI = Double(ndim=1, unit=u.deg)
+    RAD_MAX  = Double(ndim=2, unit=u.deg)
+
+    class __header__(HDUClass):
+        HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
+        HDUCLAS2 = HeaderCard(allowed_values='RAD_MAX')
+        HDUCLAS3 = HeaderCard(allowed_values='POINT-LIKE')
+        HDUCLAS4 = HeaderCard(allowed_values='RAD_MAX_2D')
+
+
+class PSF_TABLE(BinaryTable):
+    '''
+    Point-Spread-Function as tabulated probability density
+    in bins of energy, field of view offset and offset from the point-source
+    position
+    '''
+    ENERG_LO = Double(ndim=1, unit=u.TeV)
+    ENERG_HI = Double(ndim=1, unit=u.TeV)
+    THETA_LO = Double(ndim=1, unit=u.deg)
+    THETA_HI = Double(ndim=1, unit=u.deg)
+    RAD_LO   = Double(ndim=1, unit=u.deg)
+    RAD_HI   = Double(ndim=1, unit=u.deg)
+    MATRIX   = Double(ndim=3, unit=1 / u.sr)
+
+    class __header__(HDUClass):
+        HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
+        HDUCLAS2 = HeaderCard(allowed_values='PSF')
+        HDUCLAS3 = HeaderCard(allowed_values='FULL_ENCLOSURE')
+        HDUCLAS4 = HeaderCard(allowed_values='PSF_TABLE')
+
+
+class PSF_3GAUSS(BinaryTable):
+    '''
+    Energy dispersion as relative energy migration in bins of
+    true energy and field of view offset
+    '''
+    ENERG_LO = Double(ndim=1, unit=u.TeV)
+    ENERG_HI = Double(ndim=1, unit=u.TeV)
+    THETA_LO = Double(ndim=1, unit=u.deg)
+    THETA_HI = Double(ndim=1, unit=u.deg)
+    SCALE    = Double(ndim=2, unit=1 / u.sr)
+    SIGMA_1  = Double(ndim=2, unit=u.deg)
+    SIGMA_2  = Double(ndim=2, unit=u.deg)
+    SIGMA_3  = Double(ndim=2, unit=u.deg)
+    AMPL_2   = Double(ndim=2, unit=u.dimensionless_unscaled)
+    AMPL_3   = Double(ndim=2, unit=u.dimensionless_unscaled)
+
+    class __header__(HDUClass):
+        HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
+        HDUCLAS2 = HeaderCard(allowed_values='PSF')
+        HDUCLAS3 = HeaderCard(allowed_values='FULL_ENCLOSURE')
+        HDUCLAS4 = HeaderCard(allowed_values='PSF_TABLE')

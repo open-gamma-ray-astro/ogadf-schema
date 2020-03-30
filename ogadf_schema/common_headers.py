@@ -1,11 +1,18 @@
 from fits_schema.header import HeaderSchema, HeaderCard
 
+URL = 'https://gamma-astro-data-formats.readthedocs.io'
+
 
 class HDUClass(HeaderSchema):
     '''Minimum HDU* headers for this standard'''
     HDUCLASS = HeaderCard(allowed_values='GADF')
-    HDUDOC   = HeaderCard(allowed_values='https://gamma-astro-data-formats.readthedocs.io')
-    HDUVERS  = HeaderCard(allowed_values=['v0.2', '0.2'])
+    HDUDOC   = HeaderCard(allowed_values=URL)
+    HDUVERS  = HeaderCard(allowed_values={'v0.2', '0.2'})
+
+
+class CoordinateSystem(HeaderSchema):
+    EQUINOX  = HeaderCard(type_=float, allowed_values=2000.0, required=False)
+    RADECSYS = HeaderCard(type_=str, allowed_values={'ICRS', 'FK5'})
 
 
 class EarthLocation(HeaderSchema):
