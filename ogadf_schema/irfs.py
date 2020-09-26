@@ -33,11 +33,11 @@ class EDISP_2D(BinaryTable):
     '''
     ENERG_LO = Double(ndim=1, unit=u.TeV)
     ENERG_HI = Double(ndim=1, unit=u.TeV)
-    MIGRA_LO = Double(ndim=1, unit=u.dimensionless_unscaled)
-    MIGRA_HI = Double(ndim=1, unit=u.dimensionless_unscaled)
+    MIGRA_LO = Double(ndim=1, unit=u.one)
+    MIGRA_HI = Double(ndim=1, unit=u.one)
     THETA_LO = Double(ndim=1, unit=u.deg)
     THETA_HI = Double(ndim=1, unit=u.deg)
-    MATRIX   = Double(ndim=3, unit=u.dimensionless_unscaled)
+    MATRIX   = Double(ndim=3, unit=u.one)
 
     class __header__(HDUClass):
         HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
@@ -70,7 +70,7 @@ class RAD_MAX(BinaryTable):
 
 class PSF_TABLE(BinaryTable):
     '''
-    Point-Spread-Function as tabulated probability density
+    Point Spread Function as tabulated probability density
     in bins of energy, field of view offset and offset from the point-source
     position
     '''
@@ -91,8 +91,8 @@ class PSF_TABLE(BinaryTable):
 
 class PSF_3GAUSS(BinaryTable):
     '''
-    Energy dispersion as relative energy migration in bins of
-    true energy and field of view offset
+    Point Spread Function parameterized by a sum of three Gaussian
+    distributions in bins of true energy and field of view offset.
     '''
     ENERG_LO = Double(ndim=1, unit=u.TeV)
     ENERG_HI = Double(ndim=1, unit=u.TeV)
@@ -102,11 +102,29 @@ class PSF_3GAUSS(BinaryTable):
     SIGMA_1  = Double(ndim=2, unit=u.deg)
     SIGMA_2  = Double(ndim=2, unit=u.deg)
     SIGMA_3  = Double(ndim=2, unit=u.deg)
-    AMPL_2   = Double(ndim=2, unit=u.dimensionless_unscaled)
-    AMPL_3   = Double(ndim=2, unit=u.dimensionless_unscaled)
+    AMPL_2   = Double(ndim=2, unit=u.one)
+    AMPL_3   = Double(ndim=2, unit=u.one)
 
     class __header__(HDUClass):
         HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
         HDUCLAS2 = HeaderCard(allowed_values='PSF')
         HDUCLAS3 = HeaderCard(allowed_values='FULL_ENCLOSURE')
         HDUCLAS4 = HeaderCard(allowed_values='PSF_TABLE')
+
+
+class PSF_KING(BinaryTable):
+    '''
+    Point Spread Function parameterized by the King function
+    '''
+    ENERG_LO = Double(ndim=1, unit=u.TeV)
+    ENERG_HI = Double(ndim=1, unit=u.TeV)
+    THETA_LO = Double(ndim=1, unit=u.deg)
+    THETA_HI = Double(ndim=1, unit=u.deg)
+    GAMMA    = Double(ndim=2, unit=u.one)
+    SIGMA    = Double(ndim=2, unit=u.deg)
+
+    class __header__(HDUClass):
+        HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
+        HDUCLAS2 = HeaderCard(allowed_values='PSF')
+        HDUCLAS3 = HeaderCard(allowed_values='FULL_ENCLOSURE')
+        HDUCLAS4 = HeaderCard(allowed_values='PSF_KING')

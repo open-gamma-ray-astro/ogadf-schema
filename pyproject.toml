@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "ogadf_schema"
 # the version should reference the version of the schema it checks
-version = "0.2.0"
-description = ""
+version = "0.2.1"
+description = "Schema defintions for the Data Formats For Gamma-Ray Astronomy"
 authors = ["Maximilian Nöthe <maximilian.noethe@tu-dortmund.de>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-fits-schema = "^0.5.1"
+fits-schema = "^0.5.4"
 
 
 [tool.poetry.dev-dependencies]
