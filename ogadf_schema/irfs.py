@@ -80,7 +80,7 @@ class PSF_TABLE(BinaryTable):
     THETA_HI = Double(ndim=1, unit=u.deg)
     RAD_LO   = Double(ndim=1, unit=u.deg)
     RAD_HI   = Double(ndim=1, unit=u.deg)
-    MATRIX   = Double(ndim=3, unit=1 / u.sr)
+    RPSF     = Double(ndim=3, unit=1 / u.sr)
 
     class __header__(HDUClass):
         HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
