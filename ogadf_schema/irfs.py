@@ -128,3 +128,40 @@ class PSF_KING(BinaryTable):
         HDUCLAS2 = HeaderCard(allowed_values='PSF')
         HDUCLAS3 = HeaderCard(allowed_values='FULL-ENCLOSURE')
         HDUCLAS4 = HeaderCard(allowed_values='PSF_KING')
+
+
+class BKG_2D(BinaryTable):
+    '''
+    Background radially symmetric in the field of view
+    '''
+    ENERG_LO = Double(ndim=1, unit=u.TeV)
+    ENERG_HI = Double(ndim=1, unit=u.TeV)
+    THETA_LO = Double(ndim=1, unit=u.deg)
+    THETA_HI = Double(ndim=1, unit=u.deg)
+    BKG      = Double(ndim=2, unit=u.Unit('MeV-1 s-1 sr-1'))
+
+    class __header__(HDUClass):
+        HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
+        HDUCLAS2 = HeaderCard(allowed_values='BKG')
+        HDUCLAS3 = HeaderCard(allowed_values='FULL-ENCLOSURE')
+        HDUCLAS4 = HeaderCard(allowed_values='BKG_2D')
+
+
+class BKG_3D(BinaryTable):
+    '''
+    Background in two dimensional field of view coordinates
+    '''
+    ENERG_LO = Double(ndim=1, unit=u.TeV)
+    ENERG_HI = Double(ndim=1, unit=u.TeV)
+    DETX_LO  = Double(ndim=1, unit=u.deg)
+    DETX_HI  = Double(ndim=1, unit=u.deg)
+    DETY_LO  = Double(ndim=1, unit=u.deg)
+    DETY_HI  = Double(ndim=1, unit=u.deg)
+    BKG      = Double(ndim=3, unit=u.Unit('MeV-1 s-1 sr-1'))
+
+    class __header__(HDUClass):
+        HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
+        HDUCLAS2 = HeaderCard(allowed_values='BKG')
+        HDUCLAS3 = HeaderCard(allowed_values='FULL-ENCLOSURE')
+        HDUCLAS4 = HeaderCard(allowed_values='BKG_3D')
+        FOVALIGN = HeaderCard(allowed_values={'ALTAZ', 'RADEC'})

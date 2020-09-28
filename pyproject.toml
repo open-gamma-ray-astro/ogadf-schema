@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "ogadf_schema"
 # the minor version should reference the version of the schema it checks
-version = "0.2.4"
+version = "0.2.3"
 description = "Schema definitions for the Data Formats For Gamma-Ray Astronomy"
 authors = ["Maximilian Nöthe <maximilian.noethe@tu-dortmund.de>"]
 readme = "README.md"
