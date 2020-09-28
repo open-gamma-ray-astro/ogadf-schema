@@ -6,8 +6,8 @@ python:
     - "3.8"
 
 install:
-    - pip install poetry
-    - poetry install -E travis
+    - pip install -U poetry
+    - poetry install
 
 script:
     - flake8 ogadf-schema
