@@ -10,9 +10,9 @@ install:
     - poetry install
 
 script:
-    - flake8 ogadf-schema
-    - python ./test_fact_file.py
-    - python ./test_magic_file.py
+    - poetry run flake8 ogadf_schema
+    - poetry run python ./test_fact_file.py
+    - poetry run python ./test_magic_file.py
 
 before_deploy:
     - poetry config pypi-token.pypi $PYPI_TOKEN
