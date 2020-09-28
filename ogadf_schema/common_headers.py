@@ -6,7 +6,7 @@ URL = 'https://github.com/open-gamma-ray-astro/gamma-astro-data-formats'
 class HDUClass(HeaderSchema):
     '''Minimum HDU* headers for this standard'''
     HDUCLASS = HeaderCard(allowed_values='GADF')
-    HDUDOC   = HeaderCard(allowed_values=URL, casesensitive=True)
+    HDUDOC   = HeaderCard(allowed_values=URL, case_insensitive=False)
     HDUVERS  = HeaderCard(allowed_values={'v0.2', '0.2'})
 
 
