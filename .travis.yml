@@ -1,0 +1,30 @@
+language: python
+os: linux
+dist: bionic
+python:
+    - "3.7"
+    - "3.8"
+
+install:
+    - pip install poetry
+    - poetry install -E travis
+
+script:
+    - flake8 ogadf-schema
+    - python ./test_fact_file.py
+    - python ./test_magic_file.py
+
+before_deploy:
+    - poetry config pypi-token.pypi $PYPI_TOKEN
+    - poetry build
+
+deploy:
+    provider: script
+    script: poetry publish
+    distributions: sdist wheel
+    skip_existing: true
+    skip_cleanup: true
+    on:
+        tags: true
+        branch: master
+        condition: $TRAVIS_PYTHON_VERSION = "3.8"
