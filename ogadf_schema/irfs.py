@@ -18,7 +18,7 @@ class AEFF_2D(BinaryTable):
     class __header__(HDUClass):
         HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
         HDUCLAS2 = HeaderCard(allowed_values='EFF_AREA')
-        HDUCLAS3 = HeaderCard(allowed_values={'FULL_ENCLOSURE', 'POINT-LIKE'})
+        HDUCLAS3 = HeaderCard(allowed_values={'FULL-ENCLOSURE', 'POINT-LIKE'})
         HDUCLAS4 = HeaderCard(allowed_values='AEFF_2D')
         RAD_MAX  = HeaderCard(type_=float, required=False)
         OBS_ID   = HeaderCard(type_=int, required=False)
@@ -85,7 +85,7 @@ class PSF_TABLE(BinaryTable):
     class __header__(HDUClass):
         HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
         HDUCLAS2 = HeaderCard(allowed_values='PSF')
-        HDUCLAS3 = HeaderCard(allowed_values='FULL_ENCLOSURE')
+        HDUCLAS3 = HeaderCard(allowed_values='FULL-ENCLOSURE')
         HDUCLAS4 = HeaderCard(allowed_values='PSF_TABLE')
 
 
@@ -108,7 +108,7 @@ class PSF_3GAUSS(BinaryTable):
     class __header__(HDUClass):
         HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
         HDUCLAS2 = HeaderCard(allowed_values='PSF')
-        HDUCLAS3 = HeaderCard(allowed_values='FULL_ENCLOSURE')
+        HDUCLAS3 = HeaderCard(allowed_values='FULL-ENCLOSURE')
         HDUCLAS4 = HeaderCard(allowed_values='PSF_TABLE')
 
 
@@ -126,5 +126,5 @@ class PSF_KING(BinaryTable):
     class __header__(HDUClass):
         HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
         HDUCLAS2 = HeaderCard(allowed_values='PSF')
-        HDUCLAS3 = HeaderCard(allowed_values='FULL_ENCLOSURE')
+        HDUCLAS3 = HeaderCard(allowed_values='FULL-ENCLOSURE')
         HDUCLAS4 = HeaderCard(allowed_values='PSF_KING')
