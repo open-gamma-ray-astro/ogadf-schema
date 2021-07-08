@@ -109,7 +109,7 @@ class PSF_3GAUSS(BinaryTable):
         HDUCLAS1 = HeaderCard(allowed_values='RESPONSE')
         HDUCLAS2 = HeaderCard(allowed_values='PSF')
         HDUCLAS3 = HeaderCard(allowed_values='FULL-ENCLOSURE')
-        HDUCLAS4 = HeaderCard(allowed_values='PSF_TABLE')
+        HDUCLAS4 = HeaderCard(allowed_values='PSF_3GAUSS')
 
 
 class PSF_KING(BinaryTable):
