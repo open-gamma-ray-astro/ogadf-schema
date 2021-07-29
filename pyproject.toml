@@ -7,7 +7,7 @@ authors = ["Maximilian Nöthe <maximilian.noethe@tu-dortmund.de>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 fits-schema = "^0.5.4"
 
 
